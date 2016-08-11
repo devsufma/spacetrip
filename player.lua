@@ -5,8 +5,8 @@ player = {}
 function player.load()
 	player.tiro = love.audio.newSource("/sons/shoot.wav")
 	player.musica = love.audio.newSource("/sons/music.mp3")
-	player.battery_icon = love.graphics.newImage("/imagens/battery-icon.png") 
-	player.bullet_icon = love.graphics.newImage("/imagens/bullet-icon.png") 
+	player.battery_icon = love.graphics.newImage("/imagens/battery-icon.png")
+	player.bullet_icon = love.graphics.newImage("/imagens/bullet-icon.png")
 	player.imagem = love.graphics.newImage("/imagens/rocket.png")
 	player.x = love.window.getWidth()/2 - 30
 	player.y = love.window.getHeight() - 100
@@ -14,9 +14,9 @@ function player.load()
 	player.largura = player.imagem:getWidth()
 	player.altura = player.imagem:getHeight()
 	player.score = 0
-	player.fonte = love.graphics.newFont("/fontes/sofachrome/sofachro.ttf", 30)
+	player.fonte = love.graphics.newFont("/fontes/sofachro.ttf", 30)
 	player.tempo_restante = 10
-	
+
 	player.balas = {}
 	player.limite = 20
 	player.numero_de_balas = 3
@@ -33,7 +33,7 @@ function verificar_colisao_lateral()
 	end
 
 	if player.x + player.largura >= love.window.getWidth() then
-		player.x = love.window.getWidth() - player.largura 
+		player.x = love.window.getWidth() - player.largura
 	end
 
 	if player.y <= 0 then
@@ -41,7 +41,7 @@ function verificar_colisao_lateral()
 	end
 
 	if player.y + player.altura >= love.window.getHeight() then
-		player.y = love.window.getHeight() - player.altura 
+		player.y = love.window.getHeight() - player.altura
 	end
 end
 
@@ -49,7 +49,7 @@ end
 function verificar_tempo()
 	if player.tempo_restante <= 5 then
 		return true
-	else 
+	else
 		return false
 	end
 end
@@ -62,7 +62,7 @@ function verificar_colisao()
 			table.remove(combustivel.tabela, i)
 			player.score = player.score + 1
 			player.tempo_restante = 10
-		
+
 			-- Canto direito superior
 			else if ((c.x + c.largura >= player.x and c.x + c.largura <= player.x + player.largura) and (c.y >= player.y and c.y <= player.y + player.altura)) then
 				table.remove(combustivel.tabela, i)
@@ -93,7 +93,7 @@ end
 function verificar_tempo()
 	if player.tempo_restante <= 5 then
 		return true
-	else 
+	else
 		return false
 	end
 end
@@ -104,7 +104,7 @@ function verificar_colisao_entre_foguete_e_meteoro()
 		-- Canto direito inferior
 		if ((c.x + c.largura >= player.x and c.x + c.largura <= player.x + player.largura) and (c.y + c.altura >= player.y and c.y + c.altura <= player.y + player.altura)) then
 			player.tempo_restante = -10
-		
+
 			-- Canto direito superior
 			else if ((c.x + c.largura >= player.x and c.x + c.largura <= player.x + player.largura) and (c.y >= player.y and c.y <= player.y + player.altura)) then
 				player.tempo_restante = -10
@@ -127,7 +127,7 @@ end
 
 
 
-function player.move(dt) 
+function player.move(dt)
 
 	if love.keyboard.isDown("right") then
 		player.x = player.x + player.speed
@@ -169,7 +169,7 @@ function inserir_bala_na_tabela()
 			vetor.x = player.x + 20
 			vetor.y = player.y - 25
 
-			table.insert(player.balas, vetor) 
+			table.insert(player.balas, vetor)
 			player.numero_de_balas = player.numero_de_balas - 1
 		end
 	end
@@ -179,7 +179,7 @@ function player.update(dt)
 	player.limite = player.limite - 1
 	player.tempo_de_recarga = player.tempo_de_recarga + 0.01
 
-	if player.numero_de_balas < 3 and player.tempo_de_recarga >= 5.00 then 
+	if player.numero_de_balas < 3 and player.tempo_de_recarga >= 5.00 then
 		player.numero_de_balas = player.numero_de_balas + 1
 		player.tempo_de_recarga = 0
 	end
@@ -191,7 +191,7 @@ function player.update(dt)
 
 		b.y = b.y - 10
 	end
-	
+
 	if love.keyboard.isDown(" ") then
 		inserir_bala_na_tabela()
 	end
@@ -213,14 +213,14 @@ function player.draw()
 	love.graphics.setBackgroundColor(0, 12, 24)
 
 	love.graphics.draw(player.battery_icon, 10, 25)
-	
+
 	love.graphics.setFont(player.fonte)
-	
+
 	love.graphics.print(player.score, 70, 25)
 
 	love.graphics.draw(player.imagem, player.x, player.y)
 
-	love.graphics.print(string.format("%.2f", player.tempo_restante), 270, 25) 
+	love.graphics.print(string.format("%.2f", player.tempo_restante), 270, 25)
 
 	love.graphics.print(player.numero_de_balas, 550, 25)
 	love.graphics.draw(player.bullet_icon, 500, 25)

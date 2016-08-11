@@ -27,9 +27,9 @@ end
 
 
 function love.draw()
-	if GAME_MENU then 
+	if GAME_MENU then
 		menu.draw()
-		
+
 		else if GAME_RUNNING then
 			combustivel.draw()
 			meteoro.draw()
@@ -42,13 +42,13 @@ function love.draw()
 			end
 		end
 	end
-end 
+end
 
 function love.keypressed(key)
-   if key == "w" then
+   if key == "s" then
     GAME_MENU = false
-	GAME_RUNNING = true
-	GAME_STOPPING = false
-	GAME_OVERRING = false
+		GAME_RUNNING = true
+		GAME_STOPPING = false
+		GAME_OVERRING = false
    end
 end
