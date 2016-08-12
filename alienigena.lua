@@ -36,29 +36,41 @@ function verificar_colisao_entre_balas_e_alienigena()
 		for j,b in ipairs(player.balas) do
 		-- Canto direito inferior
 		if ((b.x + b.largura >= m.x and b.x + b.largura <= m.x + m.largura) and (b.y + b.altura >= m.y and b.y + b.altura <= m.y + m.altura)) then
+			mostrar_mensagem("+10", m.x, m.y, 40)
+
 			table.remove(alienigena.tabela, i)
 			table.remove(player.balas, j)
+
 			alienigena.existe = false
 			player.score = player.score + 10
 
 			-- Canto direito superior
 			else if ((b.x + b.largura >= m.x and b.x + b.largura <= m.x + m.largura) and (b.y >= m.y and b.y <= m.y + m.altura)) then
+				mostrar_mensagem("+10", m.x, m.y, 40)
+
 				table.remove(alienigena.tabela, i)
 				table.remove(player.balas, j)
+
 				alienigena.existe = false
 				player.score = player.score + 10
 
 				-- Canto esquerdo superior
 				else if ((b.x >= m.x and b.x <= m.x + m.largura) and (b.y >= m.y and b.y <= m.y + m.altura)) then
+					mostrar_mensagem("+10", m.x, m.y, 40)
+
 					table.remove(alienigena.tabela, i)
 					table.remove(player.balas, j)
+
 					alienigena.existe = false
 					player.score = player.score + 10
 
 					-- Canto esquerdo inferior
 					else if ((b.x >= m.x and b.x <= m.x + m.largura) and (b.y + b.altura >= m.y and b.y + b.altura <= m.y + m.altura)) then
+						mostrar_mensagem("+10", m.x, m.y, 40)
+
 						table.remove(alienigena.tabela, i)
 						table.remove(player.balas, j)
+
 						alienigena.existe = false
 						player.score = player.score + 10
 					end

@@ -5,6 +5,7 @@ require "player"
 require "combustivel"
 require "meteoro"
 require "alienigena"
+require "mensagem"
 
 function love.load()
 	tela.load()
@@ -13,7 +14,7 @@ function love.load()
 	combustivel.load()
 	meteoro.load()
 	alienigena.load()
-
+	mensagem.load()
 end
 
 function love.update(dt)
@@ -22,15 +23,16 @@ function love.update(dt)
 		combustivel.update(dt)
 		meteoro.update(dt)
 		alienigena.update(dt)
+		mensagem.update(dt)
 	end
 end
-
 
 function love.draw()
 	if GAME_MENU then
 		menu.draw()
 
 		else if GAME_RUNNING then
+			mensagem.draw()
 			combustivel.draw()
 			meteoro.draw()
 			player.draw()
@@ -50,5 +52,6 @@ function love.keypressed(key)
 		GAME_RUNNING = true
 		GAME_STOPPING = false
 		GAME_OVERRING = false
+		mostrar_mensagem("VAI", 160, 300, 80)
    end
 end
