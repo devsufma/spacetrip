@@ -17,11 +17,12 @@ function love.load()
 end
 
 function love.update(dt)
-	player.update(dt)
-	combustivel.update(dt)
-	meteoro.update(dt)
-	alienigena.update(dt)
-
+	if GAME_RUNNING then
+		player.update(dt)
+		combustivel.update(dt)
+		meteoro.update(dt)
+		alienigena.update(dt)
+	end
 end
 
 
