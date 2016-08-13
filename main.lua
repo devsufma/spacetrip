@@ -66,6 +66,7 @@ function love.draw()
 			else if GAME_OVERRING then
 				love.graphics.setBackgroundColor(0, 12, 24)
 				love.graphics.print("Fim de Jogo", 150, 250)
+				love.graphics.print("Reinicie com a tecla R", 20, 300)
 			
 				else if GAME_STOPPING then
 					love.graphics.print("Jogo Pausado", 150, 250)
