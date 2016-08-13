@@ -3,7 +3,7 @@ menu = {}
 
 -- Carregando as propriedades do Objeto Menu
 function menu.load()
-	fonte_titulo = love.graphics.newFont("/fontes/sofachro.ttf", 30)
+	fonte_titulo = love.graphics.newFont("/fontes/sofachro.ttf", 20)
 	fonte_descricao = love.graphics.newFont("fontes/sofachro.ttf", 15)
 
 end

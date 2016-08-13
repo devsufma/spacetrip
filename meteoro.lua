@@ -27,6 +27,7 @@ function verificar_colisao_entre_balas_e_meteoro()
 
 				if m.numero_de_balas ~= 0 then
 					table.remove(meteoro.tabela, i)
+		
 				else
 					m.numero_de_balas = m.numero_de_balas + 1
 				end
@@ -38,6 +39,7 @@ function verificar_colisao_entre_balas_e_meteoro()
 
 					if m.numero_de_balas ~= 0 then
 						table.remove(meteoro.tabela, i)
+			
 					else
 						m.numero_de_balas = m.numero_de_balas + 1
 					end
@@ -49,6 +51,7 @@ function verificar_colisao_entre_balas_e_meteoro()
 
 						if m.numero_de_balas ~= 0 then
 							table.remove(meteoro.tabela, i)
+				
 						else
 							m.numero_de_balas = m.numero_de_balas + 1
 						end
@@ -60,6 +63,7 @@ function verificar_colisao_entre_balas_e_meteoro()
 
 							if m.numero_de_balas ~= 0 then
 								table.remove(meteoro.tabela, i)
+						
 							else
 								m.numero_de_balas = m.numero_de_balas + 1
 							end

@@ -7,6 +7,28 @@ require "meteoro"
 require "alienigena"
 require "mensagem"
 
+-- Reiniciando o jogo
+function reiniciar()
+	if love.keyboard.isDown("r") then
+		love.load()
+		GAME_MENU = false
+		GAME_RUNNING = true
+		GAME_STOPPING = false
+		GAME_OVERRING = false
+		mostrar_mensagem("VAI", 160, 300, 80)
+	end
+end
+
+-- Pausando o jogo 
+function pausar()
+	if love.keyboard.isDown("escape") then
+		GAME_MENU = false
+		GAME_RUNNING = not GAME_RUNNING
+		GAME_STOPPING = not GAME_STOPPING
+		GAME_OVERRING = false
+	end
+end
+
 function love.load()
 	tela.load()
 	menu.load()
@@ -18,6 +40,9 @@ function love.load()
 end
 
 function love.update(dt)
+	reiniciar()
+	pausar()
+
 	if GAME_RUNNING then
 		player.update(dt)
 		combustivel.update(dt)
@@ -40,18 +65,23 @@ function love.draw()
 
 			else if GAME_OVERRING then
 				love.graphics.setBackgroundColor(0, 12, 24)
-				love.graphics.print("Game Over", 150, 250)
+				love.graphics.print("Fim de Jogo", 150, 250)
+			
+				else if GAME_STOPPING then
+					love.graphics.print("Jogo Pausado", 150, 250)
+				end
 			end
 		end
 	end
 end
 
+
 function love.keypressed(key)
-   if key == "s" then
-    GAME_MENU = false
+	if key == "s" then
+		GAME_MENU = false
 		GAME_RUNNING = true
 		GAME_STOPPING = false
 		GAME_OVERRING = false
 		mostrar_mensagem("VAI", 160, 300, 80)
-   end
+  	 end
 end
