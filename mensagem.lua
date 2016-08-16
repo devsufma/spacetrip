@@ -31,7 +31,7 @@ end
 function mensagem.draw()
 	if table.getn(mensagem.tabela) >= 0 then
 		for i,p in pairs(mensagem.tabela) do
-      love.graphics.setFont(p.fonte)
+      		love.graphics.setFont(p.fonte)
 			love.graphics.print(p.mensagem, p.x, p.y)
 		end
 	end

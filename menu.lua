@@ -3,7 +3,7 @@ menu = {}
 
 -- Carregando as propriedades do Objeto Menu
 function menu.load()
-	fonte_titulo = love.graphics.newFont("/fontes/sofachro.ttf", 20)
+	fonte_titulo = love.graphics.newFont("/fontes/sofachro.ttf", 50)
 	fonte_descricao = love.graphics.newFont("fontes/sofachro.ttf", 15)
 
 end
@@ -14,9 +14,9 @@ function menu.draw()
 
 -- Desenhando o titulo do menu
 	love.graphics.setFont(fonte_titulo)
-	love.graphics.print("Navegando Pelo Espaço", 30, love.window.getHeight()/2)
+	love.graphics.print("Space Trip", 55, 250)
 
 -- Desenhando a descricao do menu
 	love.graphics.setFont(fonte_descricao)
-	love.graphics.print("Apertar [S] para começar o jogo", 20, love.window.getHeight()/2 + 100)
+	love.graphics.print("(S) Começar", 220, 350)
 end

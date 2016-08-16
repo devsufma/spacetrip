@@ -10,6 +10,7 @@ function meteoro.spawn()
 	vetor.altura = vetor.imagem:getHeight()/2
 	vetor.x = player.x
 	vetor.y = 0
+	vetor.velocidade = 7
 	vetor.angulo = 0
 	vetor.numero_de_balas = 0
 
@@ -96,8 +97,8 @@ function meteoro.update(dt)
 			table.remove(meteoro.tabela, i)
 		end
 
-		m.y = m.y + 4
-		m.angulo = m.angulo + 2
+		m.y = m.y + m.velocidade
+		m.angulo = m.angulo + 5
 	end
 
 	verificar_colisao_entre_balas_e_meteoro()

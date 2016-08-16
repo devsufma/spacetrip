@@ -7,25 +7,44 @@ require "meteoro"
 require "alienigena"
 require "mensagem"
 
+-- Comecando o jogo
+function comecar()
+	GAME_MENU = false
+	GAME_RUNNING = true
+	GAME_STOPPING = false
+	GAME_OVERRING = false
+	mostrar_mensagem("VAI", 160, 300, 80)
+end
+
+-- Saindo do jogo
+function sair()
+	love.event.quit()
+end
+
 -- Reiniciando o jogo
 function reiniciar()
-	if love.keyboard.isDown("r") then
-		love.load()
-		GAME_MENU = false
-		GAME_RUNNING = true
-		GAME_STOPPING = false
-		GAME_OVERRING = false
-		mostrar_mensagem("VAI", 160, 300, 80)
-	end
+	love.load()
+	GAME_MENU = false
+	GAME_RUNNING = true
+	GAME_STOPPING = false
+	GAME_OVERRING = false
+	mostrar_mensagem("VAI", 160, 300, 80)
 end
 
 -- Pausando o jogo 
 function pausar()
-	if love.keyboard.isDown("escape") then
+	if love.keyboard.isDown("escape") and not GAME_MENU and not GAME_OVERRING then
 		GAME_MENU = false
-		GAME_RUNNING = not GAME_RUNNING
-		GAME_STOPPING = not GAME_STOPPING
+		GAME_RUNNING = false
+		GAME_STOPPING = true
 		GAME_OVERRING = false
+
+		else if love.keyboard.isDown("p") and GAME_STOPPING then
+			GAME_MENU = false
+			GAME_RUNNING = true
+			GAME_STOPPING = false
+			GAME_OVERRING = false
+		end
 	end
 end
 
@@ -40,7 +59,18 @@ function love.load()
 end
 
 function love.update(dt)
-	reiniciar()
+	if love.keyboard.isDown("s") and GAME_MENU then
+		comecar()
+	end
+
+	if love.keyboard.isDown("e") and (GAME_STOPPING or GAME_OVERRING) then
+		sair()
+	end
+
+	if love.keyboard.isDown("r") and (GAME_STOPPING or GAME_OVERRING) then
+		reiniciar()
+	end
+
 	pausar()
 
 	if GAME_RUNNING then
@@ -64,25 +94,25 @@ function love.draw()
 			alienigena.draw()
 
 			else if GAME_OVERRING then
-				love.graphics.setBackgroundColor(0, 12, 24)
-				love.graphics.print("Fim de Jogo", 150, 250)
-				love.graphics.print("Reinicie com a tecla R", 20, 300)
+				love.graphics.setFont(fonte_titulo)
+				love.graphics.print("Fim de Jogo", 50, 200)
+
+				love.graphics.setFont(fonte_descricao)
+				love.graphics.print("(R) Reiniciar", 220, 300)
+				love.graphics.print("(E) Sair", 220, 350)
 			
 				else if GAME_STOPPING then
-					love.graphics.print("Jogo Pausado", 150, 250)
+					love.graphics.setFont(fonte_titulo)
+					love.graphics.print("Jogo", 200, 200)
+					love.graphics.print("Pausado", 90, 250)
+
+					love.graphics.setFont(fonte_descricao)
+					love.graphics.print("(P) Voltar ao Jogo", 170, 350)
+					love.graphics.print("(R) Reiniciar", 170, 400)
+					love.graphics.print("(E) Sair", 170, 450)
+					
 				end
 			end
 		end
 	end
-end
-
-
-function love.keypressed(key)
-	if key == "s" then
-		GAME_MENU = false
-		GAME_RUNNING = true
-		GAME_STOPPING = false
-		GAME_OVERRING = false
-		mostrar_mensagem("VAI", 160, 300, 80)
-  	 end
 end
